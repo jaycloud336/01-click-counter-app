@@ -1,0 +1,3 @@
+Recommendations:
+Best Update: Move to python:3.13-slim for better vulnerability management, smaller size, and fewer packages.
+If you need a smaller image, consider switching to alpine, which will reduce the image size significantly (17 MB).

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Click Counter</title>
+    <style>
+        body {
+            background-color: white; /* Keeps the background white */
+            color: #4A4A4A; /* Sets the font color to dark gray */
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center; /* Centers content horizontally */
+            align-items: center; /* Centers content vertically */
+            height: 100vh; /* Full viewport height */
+            margin: 0; /* Removes default margins */
+            flex-direction: column; /* Aligns items in a column layout */
+        }
+        .background-image {
+            width: 60%; /* Size of the image */
+            max-width: 500px; /* Ensures responsiveness */
+            margin-bottom: 50px; /* Adds space between the image and the click counter */
+        }
+        .content {
+            text-align: center; /* Centers the text */
+        }
+        .counter {
+            font-family: 'Courier New', Courier, monospace; /* Custom font for the counter */
+            font-size: 24px; /* Increases font size */
+            font-weight: bold; /* Makes the text bold */
+            color: #4A4A4A; /* Sets the counter text to dark gray */
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+    <script>
+        function incrementCounter() {
+            fetch("/click")
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById("counter").innerText = data;
+                });
+        }
+    </script>
+</head>
+<body>
+    <img src="{{ url_for('static', filename='background.png') }}" alt="Background" class="background-image">
+    <div class="content">
+        <h1>Click Counter</h1>
+        <p class="counter">Count: <span id="counter">{{ count }}</span></p>
+        <button onclick="incrementCounter()">Click Me!</button>
+    </div>
+</body>
+</html>
